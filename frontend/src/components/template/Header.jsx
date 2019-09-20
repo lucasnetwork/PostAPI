@@ -4,7 +4,7 @@ import Menu from './Menu'
 class Header extends Component{
     render(){
         return(
-            <header>menu</header>
+            <header className="header"><Menu /></header>
         )
     }
 }
