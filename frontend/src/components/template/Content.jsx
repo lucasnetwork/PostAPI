@@ -12,13 +12,12 @@ class Content extends Component{
 
     }
     getPosts(){
-        axios.get('http://localhost:3000/post')
+        axios.get('http://localhost:3010/post')
             .then(res => {
                 const posts = res.data.map(post => {
                     return {...post}
                 })
                 this.setState({posts})
-                console.log(this.state.posts)
             })
     }
     componentDidMount(){
@@ -27,10 +26,14 @@ class Content extends Component{
     render(){
         return(
             <main className="content">
+                <h2 className="title">Posts</h2>
                 {this.state.posts.map((post,id) => {
-                    return(<li key={post.id}>
+                    return(<div class="post" key={post.id}>
+                        <div className="name">
                             {post.name}
-                        </li>
+                        </div>
+                        {post.id}
+                    </div>
                     )})
                 }
             </main>

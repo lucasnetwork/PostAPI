@@ -3,8 +3,8 @@
     grid-area: header;
     background-color: #DFCED9;
     box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.2);
-    margin-bottom:5px;
+    // margin-bottom:5px;
     justify-content:flex-end;
     align-items: center;
-    
+    z-index: 1;
 }
