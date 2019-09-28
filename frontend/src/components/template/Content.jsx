@@ -7,14 +7,16 @@ class Content extends Component{
     constructor(props){
         super(props)
         this.state = {
-            posts:[]
+            posts:[],
+            limit:2,
+            page:1,
         }
 
     }
     getPosts(){
-        axios.get('http://localhost:3010/post')
+        axios.get(`http://localhost:3010/post?page=${this.page}`)
             .then(res => {
-                const posts = res.data.map(post => {
+                const posts = res.data.data.map(post => {
                     return {...post}
                 })
                 this.setState({posts})
@@ -23,16 +25,23 @@ class Content extends Component{
     componentDidMount(){
         this.getPosts()
     }
+    loadPosts(){
+
+    }
     render(){
         return(
             <main className="content">
                 <h2 className="title">Posts</h2>
                 {this.state.posts.map((post,id) => {
-                    return(<div class="post" key={post.id}>
-                        <div className="name">
+                    return(<div className="post" key={id}>
+                        <div className="post-header">
+                            {post.id}
                             {post.name}
+                            {post.description}
                         </div>
-                        {post.id}
+                        <div className="post-content">
+                            {post.content}
+                        </div>
                     </div>
                     )})
                 }

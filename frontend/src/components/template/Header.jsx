@@ -5,7 +5,9 @@ import './../../css/header.css'
 class Header extends Component{
     render(){
         return(
-            <header className="header"><Menu /></header>
+            <header className="header">
+                <h1>PostsApi</h1>
+                <Menu /></header>
         )
     }
 }
