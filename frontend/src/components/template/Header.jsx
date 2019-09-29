@@ -6,7 +6,7 @@ class Header extends Component{
     render(){
         return(
             <header className="header">
-                <h1>PostsApi</h1>
+                <h1><a href="/">PostsApi</a></h1>
                 <Menu /></header>
         )
     }

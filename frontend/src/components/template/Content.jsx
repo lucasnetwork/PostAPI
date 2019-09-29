@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import './../../css/content.css'
 import axios from 'axios'
-
+// const url = "https://1.bp.blogspot.com/-TFT_BqIAgRc/WYZfZlB_ZbI/AAAAAAAAFAA/2JY33z7kSY8zjHefxdpNp-eNzvF-IdADQCLcBGAs/s1600/buenos-aires-floralis-generica.jpg"
 
 class Content extends Component{
     constructor(props){
@@ -32,17 +32,21 @@ class Content extends Component{
         return(
             <main className="content">
                 <h2 className="title">Posts</h2>
-                {this.state.posts.map((post,id) => {
-                    return(<div className="post" key={id}>
+                {this.state.posts.map((post) => {
+                    return(<article className="post" key={post.id}>
                         <div className="post-header">
-                            {post.id}
-                            {post.name}
-                            {post.description}
+                            {/* <img src={url} alt="Author"/> */}
+                            <div className="post-name">
+                                {post.name}
+                            </div>
+                            <div className="post-description">
+                                {post.description}
+                            </div>
                         </div>
                         <div className="post-content">
                             {post.content}
                         </div>
-                    </div>
+                    </article>
                     )})
                 }
             </main>
