@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import './../../css/content.css'
 import axios from 'axios'
-// const url = "https://1.bp.blogspot.com/-TFT_BqIAgRc/WYZfZlB_ZbI/AAAAAAAAFAA/2JY33z7kSY8zjHefxdpNp-eNzvF-IdADQCLcBGAs/s1600/buenos-aires-floralis-generica.jpg"
+
 
 class Content extends Component{
     constructor(props){
@@ -11,6 +11,7 @@ class Content extends Component{
             limit:2,
             page:1,
         }
+        
 
     }
     getPosts(){
@@ -21,6 +22,7 @@ class Content extends Component{
                 })
                 this.setState({posts})
             })
+            
     }
     componentDidMount(){
         this.getPosts()
@@ -28,6 +30,7 @@ class Content extends Component{
     loadPosts(){
 
     }
+    
     render(){
         return(
             <main className="content">
