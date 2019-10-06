@@ -1,0 +1,27 @@
+@import './sass-variables/backgrounds.scss';
+@import './sass-variables/fonts.scss';
+
+.admin-table{
+    display:flex;
+    flex-direction: column;
+    font-family: $Roboto;
+    margin:20px;
+    h1{
+        align-self: center;
+    }
+    .table{
+        padding: 0;
+        margin: 0;
+        // border: 1px solid $font-black;
+        .t-header tr th{
+            padding: 15px 0px;
+            margin: 0;
+            border-bottom: 1px solid $font-black;
+            background-color: $back-base;
+            color:$font-white
+        }
+        .button-action{
+            display: flex
+        }
+    }
+}
