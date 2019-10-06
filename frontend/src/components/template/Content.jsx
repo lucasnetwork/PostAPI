@@ -1,59 +1,62 @@
 import React,{Component} from 'react'
 import './../../css/content.css'
 import axios from 'axios'
-import image from './image.jpg'
+import image from './image.jpg' //imagem padrão
+import {baseApiUrl} from './../../global/global'
+class PostRender extends Component{
+    constructor(props){
+        super(props)
+    }
+    render(){
+        return(
+            <div className={this.props.class}>
+                {this.props.content}
+            </div>
+        )
+    }
+}
 
 class Content extends Component{
     constructor(props){
         super(props)
         this.state = {
             posts:[],
-            limit:2,
-            page:3,
+            limit:0,
+            page:1,
         }
-        
-
     }
     getPosts(){
-        axios.get(`http://localhost:3010/post?page=${this.page}`)
+        axios.get(`${baseApiUrl}/post?page=${this.page}`)
             .then(res => {
-                console.log(res)
                 const posts = res.data.data.map(post => {
                     return {...post}
                 })
                 this.setState({posts})
-                console.log(this.state.posts)
             })
             
     }
     componentDidMount(){
         this.getPosts()
     }
-    loadPosts(){
-
-    }
     
     render(){
         return(
             <main className="content">
                 <h2 className="title">Posts</h2>
+
+                {/* Utilizará a função map para renderizar cada um dos posts,
+                    Retornando sempre uma tag article */}
                 {this.state.posts.map((post) => {
                     return(<article className="post" key={post.id}>
                         <div className="post-header">
-                            <img src={(post.imageUrl) ? post.imageUrl : image} alt="Author"/>
-                            <div className="post-title">
-                                {post.title}
-                            </div>
-                            <div className="post-name">
-                                {post.name}
-                            </div>
-                            <div className="post-description">
-                                {post.description}
-                            </div>
+                            {/*Se existir imagem no banco de dados, vai utilizar, se não, utilizará a imagem padrão*/}
+                            <img src={(post.imageUrl) ? post.imageUrl : image} alt="Author"/> 
+                            
+                            <PostRender class="post-title" content={post.title}/>
+                            <PostRender class="post-name" content={post.name}/>
+                            <PostRender class="post-description" content={post.description}/>
                         </div>
-                        <div className="post-content">
-                            {post.content}
-                        </div>
+                        <PostRender class="post-content" content={post.content}/>
                     </article>
                     )})
                 }

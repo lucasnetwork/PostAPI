@@ -6,8 +6,7 @@ class Footer extends Component{
     render(){
         return(
             <footer className="footer">
-                <FontAwesomeIcon icon={faCopyright
-                }/>
+                <FontAwesomeIcon icon={faCopyright}/>
                 <p>Copyright. Todos os direitos Reservados.</p>
             </footer>
         )

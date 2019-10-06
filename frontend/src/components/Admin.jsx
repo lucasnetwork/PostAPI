@@ -12,11 +12,12 @@ class Renderpost extends Component{
     render(){
         return(
             <tr >
-                <td>{this.props.name}</td>
-                <td>{this.props.title}</td>
+                <td>{this.props.post.id}</td>
+                <td>{this.props.post.name}</td>
+                <td>{this.props.post.title}</td>
                 <td>
-                    <button id={this.props.id} onClick={this.deletedPost}> <FontAwesomeIcon icon={faTrash}/></button>
-                    <button id={this.props.id}><FontAwesomeIcon icon={faEdit}/></button>
+                    <button id={this.props.post.id} onClick={() =>this.deletedPost(this.props.id)}> <FontAwesomeIcon icon={faTrash}/></button>
+                    <button id={this.props.post.id}><FontAwesomeIcon icon={faEdit}/></button>
                 </td>
             </tr>
         )
@@ -29,7 +30,6 @@ class Admin extends Component{
         this.state = ({
             posts:[],
             post: [],
-            lenght:0
         })
         this.getPosts = this.getPosts.bind(this)
         
@@ -40,18 +40,27 @@ class Admin extends Component{
                 const posts = res.data.data.map(post => {
                     return {...post}
                 })
-                this.setState({posts,length:posts.length})
+                this.setState({posts})
             })
     }
-    deletedPost(e){
-        const Id = e.target.id
-        console.log(e.target)
-        axios.delete(`${baseApiUrl}/post/60`)
-        // .then(() => this.getPosts())
-        
+    loadPost =() => {
+
+    }
+    deletedPost(id){
+        const posts = this.state.posts
+        axios.delete(`${baseApiUrl}/post/${id}`)
+            .then(() => {
+                const newPosts = posts.filter((value) => value.id !== id)
+                this.setState({Posts:newPosts})
+            })
     }
     componentDidMount(){
         this.getPosts()
+    }
+    //Temporário
+    componentWillUpdate(){
+        this.getPosts()
+
     }
     render(){
         return(
@@ -69,18 +78,18 @@ class Admin extends Component{
                         <tbody>
 
                     {this.state.posts.map((post,id)=>{
-                        return(<tr key={id}>
-                                    <td>{post.id}</td>
-                                    <td>{post.name}</td>
-                                    <td>{post.title}</td>
-                                    <td>
-                                        <div className="button-action">
-                                            <i> <FontAwesomeIcon icon={faTrash}/></i> 
-                                            <button id={post.id} item={post} onClick ={this.deletedPost}></button>
-                                        </div>
-                                        <button id={id} onClick={this.loadPost}><FontAwesomeIcon icon={faEdit}/> </button>
-                                    </td>
-                        </tr>)
+                        return(
+                            // <Renderpost post= {post}/>
+                            <tr key={post.id} >
+                                <td>{post.id}</td>
+                                <td>{post.name}</td>
+                                <td>{post.title}</td>
+                                <td>
+                                    <button id={post.id} onClick={() =>this.deletedPost(post.id)}> <FontAwesomeIcon icon={faTrash}/></button>
+                                    <button id={post.id}><FontAwesomeIcon icon={faEdit}/></button>
+                                </td>
+                            </tr>
+                        )
                     })}
                     </tbody>
                 </table>
