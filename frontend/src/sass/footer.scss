@@ -1,3 +1,7 @@
+@import 'sass-variables/backgrounds.scss';
+@import 'sass-variables/fonts.scss';
+
+
 .footer{
     grid-area: footer;
 
@@ -9,6 +13,8 @@
     z-index: 1;
     padding:10px;
     font-size:1.2rem;
+    font-family: $Roboto;
+    color:$font-white;
     p{
         margin-left:5px;
     }

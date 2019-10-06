@@ -1,13 +1,17 @@
+@import 'sass-variables/backgrounds.scss';
+@import 'sass-variables/fonts.scss';
+
 .menu {
     grid-area: menu;
     display:flex;
     list-style: none;
     justify-self: flex-end;
-    
+    font-family: $Roboto;
+    color:$font-white;
     li{
         margin-right:5px;
         a{
-            color:#000;
+            color:$font-white;
             margin-left: 5px;
             text-decoration:none;
             vertical-align: center;

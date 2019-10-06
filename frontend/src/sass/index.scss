@@ -1,3 +1,6 @@
+@import 'sass-variables/backgrounds.scss';
+@import 'sass-variables/fonts.scss';
+
 .App{
     display: grid;
     grid-template-rows: 100px 1fr 100px;

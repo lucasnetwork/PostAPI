@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import './../../css/content.css'
 import axios from 'axios'
-
+import image from './image.jpg'
 
 class Content extends Component{
     constructor(props){
@@ -9,7 +9,7 @@ class Content extends Component{
         this.state = {
             posts:[],
             limit:2,
-            page:1,
+            page:3,
         }
         
 
@@ -17,10 +17,12 @@ class Content extends Component{
     getPosts(){
         axios.get(`http://localhost:3010/post?page=${this.page}`)
             .then(res => {
+                console.log(res)
                 const posts = res.data.data.map(post => {
                     return {...post}
                 })
                 this.setState({posts})
+                console.log(this.state.posts)
             })
             
     }
@@ -38,7 +40,10 @@ class Content extends Component{
                 {this.state.posts.map((post) => {
                     return(<article className="post" key={post.id}>
                         <div className="post-header">
-                            {/* <img src={url} alt="Author"/> */}
+                            <img src={(post.imageUrl) ? post.imageUrl : image} alt="Author"/>
+                            <div className="post-title">
+                                {post.title}
+                            </div>
                             <div className="post-name">
                                 {post.name}
                             </div>
