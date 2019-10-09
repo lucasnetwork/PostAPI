@@ -4,9 +4,6 @@ import axios from 'axios'
 import image from './image.jpg' //imagem padrão
 import {baseApiUrl} from './../../global/global'
 class PostRender extends Component{
-    constructor(props){
-        super(props)
-    }
     render(){
         return(
             <div className={this.props.class}>

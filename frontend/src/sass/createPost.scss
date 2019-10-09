@@ -1,9 +1,8 @@
 @import 'sass-variables/backgrounds.scss';
 @import 'sass-variables/fonts.scss';
-
+@import 'sass-variables/mixin.scss';
 .post-create{
-    display: flex;
-    flex-direction: column;
+    @include d-flex(column);
     justify-items: space-around;
     align-items: center;
     h2{
@@ -11,17 +10,16 @@
         color:$font-black;
     }
     form{
-        display: flex;
-        flex-direction: column;
+        @include d-flex(column);
         margin:10px;
         width: 80%;
         input{
             font-family: $Roboto;
             background: $back-white;
             margin-bottom: 10px;
-            border:none;
             border-bottom: 1px solid rgba(0,0,0,0.2);;
             padding:10px;
+            border:none;
             outline: none;
         }
         button{

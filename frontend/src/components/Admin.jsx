@@ -5,34 +5,28 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {} from '@fortawesome/fontawesome-svg-core'
 import { faTrash,faEdit} from '@fortawesome/free-solid-svg-icons'
 import './../css/admin.css'
-class Renderpost extends Component{
-    constructor(props){
-        super(props)
-    }
+
+class Avatar  extends Component{
+
     render(){
         return(
-            <tr >
-                <td>{this.props.post.id}</td>
-                <td>{this.props.post.name}</td>
-                <td>{this.props.post.title}</td>
-                <td>
-                    <button id={this.props.post.id} onClick={() =>this.deletedPost(this.props.id)}> <FontAwesomeIcon icon={faTrash}/></button>
-                    <button id={this.props.post.id}><FontAwesomeIcon icon={faEdit}/></button>
-                </td>
-            </tr>
+            <>
+                <td>{this.props.header.id}</td>
+                <td>{this.props.header.name}</td>
+                <td>{this.props.header.title}</td>
+            </>
         )
     }
 }
-
 class Admin extends Component{
     constructor(props){
         super(props)
         this.state = ({
             posts:[],
-            post: [],
+            post:{},
         })
         this.getPosts = this.getPosts.bind(this)
-        
+        this.loadPost = this.loadPost.bind(this)
     }
     getPosts = () => {
         axios.get(`${baseApiUrl}/post`)
@@ -43,24 +37,21 @@ class Admin extends Component{
                 this.setState({posts})
             })
     }
-    loadPost =() => {
-
+    loadPost =(id) => {
+        axios.get(`${baseApiUrl}/post/${id}`)
+            .then(res => this.setState({post:res.data}))
     }
     deletedPost(id){
         const posts = this.state.posts
         axios.delete(`${baseApiUrl}/post/${id}`)
             .then(() => {
                 const newPosts = posts.filter((value) => value.id !== id)
-                this.setState({Posts:newPosts})
+                this.setState({posts:newPosts})
             })
     }
+    savePost(){}
     componentDidMount(){
         this.getPosts()
-    }
-    //Temporário
-    componentWillUpdate(){
-        this.getPosts()
-
     }
     render(){
         return(
@@ -76,25 +67,20 @@ class Admin extends Component{
                             </tr>
                         </thead>
                         <tbody>
-
-                    {this.state.posts.map((post,id)=>{
-                        return(
-                            // <Renderpost post= {post}/>
-                            <tr key={post.id} >
-                                <td>{post.id}</td>
-                                <td>{post.name}</td>
-                                <td>{post.title}</td>
-                                <td>
-                                    <button id={post.id} onClick={() =>this.deletedPost(post.id)}> <FontAwesomeIcon icon={faTrash}/></button>
-                                    <button id={post.id}><FontAwesomeIcon icon={faEdit}/></button>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                    </tbody>
+                            {this.state.posts.map((posts,id)=>{
+                                return(
+                                    <tr key={posts.id} >
+                                        <Avatar header={posts}/>
+                                        <td className="table-actions">
+                                            <button onClick={() =>this.deletedPost(posts.id)}><FontAwesomeIcon className="trash" icon={faTrash}/></button>
+                                            <button onClick={() =>{this.loadPost(posts.id)}}><FontAwesomeIcon icon={faEdit}/></button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
                 </table>
             </main>
-            
         )
     }
 }
