@@ -6,11 +6,11 @@ const DB = require('./config/DB')
 
 app.db = DB
 consign()
-    .then('./api/validation.js')
-    .then('./api')
-    .then('./config/middlewares.js')
-    .then('./config/routes.js')
-    .into(app)
-app.listen(3000,()=>{
-    console.log("Backend executando")
+	.then('./api/validation.js')
+	.then('./api')
+	.then('./config/middlewares.js')
+	.then('./config/routes.js')
+	.into(app)
+app.listen(3010,()=>{
+	console.log('Backend executando')
 })
