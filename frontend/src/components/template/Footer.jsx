@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import '../../css/footer.css'
+import '../../sass/footer.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopyright } from '@fortawesome/free-solid-svg-icons'
 class Footer extends Component{

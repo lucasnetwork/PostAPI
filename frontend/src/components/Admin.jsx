@@ -4,7 +4,7 @@ import {baseApiUrl} from './../global/global'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {} from '@fortawesome/fontawesome-svg-core'
 import { faTrash,faEdit} from '@fortawesome/free-solid-svg-icons'
-import './../css/admin.css'
+import './../sass/admin.scss'
 
 class Avatar  extends Component{
 
@@ -23,7 +23,7 @@ class Admin extends Component{
         super(props)
         this.state = ({
             posts:[],
-            post:{},
+            post:[],
         })
         this.getPosts = this.getPosts.bind(this)
         this.loadPost = this.loadPost.bind(this)
@@ -48,8 +48,21 @@ class Admin extends Component{
                 const newPosts = posts.filter((value) => value.id !== id)
                 this.setState({posts:newPosts})
             })
+
     }
-    savePost(){}
+    save(e){
+        e.preventDefault()
+        axios.put(`${baseApiUrl}/post/${e.target.id}`,this.state.post[0]).then(() => this.getPosts())
+       
+    }
+    savePost(e){
+        const post = this.state.post[0]
+        const value = e.value
+        const name = e.name
+        post[`${name}`] = value
+        this.setState(post) 
+        this.getPosts()
+    }
     componentDidMount(){
         this.getPosts()
     }
@@ -57,6 +70,13 @@ class Admin extends Component{
         return(
             <main className="admin-table">
                 <h1>Admin</h1>
+                <section>
+                    {this.state.post.map((post,id) =>(<form className="admin-post-update" key={id}>
+                        <input value={post.name} onChange={() => this.onChange}></input>
+                        <input name="title" value={post.title} onChange={(e) => this.savePost(e.target)}></input>
+                        <button id={post.id} onClick={(e) =>this.save(e)}>salvar</button>
+                    </form>))}
+                </section>
                 <table className="table">
                         <thead className="t-header">
                             <tr>

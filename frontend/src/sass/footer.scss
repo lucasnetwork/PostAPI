@@ -8,10 +8,12 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: #DFCED9;
-    box-shadow: 2px -2px 2px 1px rgba(0,0,0,0.2);
     z-index: 1;
     padding:10px;
+
+    background-color: $back-base;
+    box-shadow: 2px -2px 2px 1px rgba(0,0,0,0.2);
+    
     font-size:1.2rem;
     font-family: $Roboto;
     color:$font-white;

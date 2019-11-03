@@ -26,18 +26,21 @@
         background-color: $back-white;
         color: $font-black;
         margin-bottom: 10px;
-        .post-header{
+        
+        &-header{
             display:flex;
+            flex-direction: column;
             padding-bottom: 10px;
             border-bottom: 1px solid #aaa;
+            
             flex-wrap: wrap;
             img{
-                width:200px;
-                margin-right: 10px;
-                justify-self: flex-start;
+                width:50%;
+                margin: 0 auto;
             }
             .post-name{
                 font-size:1.2rem;
+                margin-top:10px;
             }
             .post-description{
                 width: 100%;
@@ -45,8 +48,12 @@
                 font-size: 1.2rem;
                 color:$font-black2;
             }
+            .post-title{
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
         }
-        .post-content{
+        &-content{
             margin-top:10px;
             text-align: justify;
             padding: 10px;

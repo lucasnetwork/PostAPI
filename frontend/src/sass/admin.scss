@@ -20,7 +20,7 @@
             margin: 0;
             border-bottom: 1px solid $font-black;
             background-color: $back-base;
-            color:$font-white
+            color:$font-white;
         }
         .table-actions{
             button:nth-child(1){
@@ -42,5 +42,16 @@
                 font-size: 15px;
             }
         }
+    }
+    .admin-post-update{
+        @include d-flex(column);
+        input{
+            padding:2px;
+            margin-bottom: 15px;
+            outline: none;
+            border:none;
+            border-bottom: 1px solid #000;
+        }
+        margin-bottom: 50px;
     }
 }
