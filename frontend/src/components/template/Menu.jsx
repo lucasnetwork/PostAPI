@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {} from '@fortawesome/fontawesome-svg-core'
-import './../../css/menu.css'
+import './../../sass/menu.scss'
 import { faUser, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 class Menu extends Component{

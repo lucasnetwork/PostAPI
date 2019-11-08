@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {baseApiUrl} from './../global/global.js'
 import axios from 'axios'
-import '../css/createPost.css'
+import '../sass/createPost.scss'
 
 class CreatePost extends Component{
     constructor(props){
